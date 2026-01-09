@@ -81,7 +81,7 @@ class ResendEmailVerificationAPIView(APIView):
             # Generate a jwt token for resend confirm email
             token = token_generator(user)
             # Resending confirm email token
-            FRONTEND_URL = "http://localhost:3000"
+            FRONTEND_URL = "https://funiture-frontend.onrender.com"
 
             confirm_url = f"{FRONTEND_URL}/confirmation/{token['access']}"
             html_msg = f"""
@@ -127,7 +127,7 @@ class ResetPasswordAPIView(APIView):
             # set_password_url = self.request.build_absolute_uri(
             #     reverse("set_password", kwargs={"token": token["access"]})
             # )
-            FRONTEND_URL = "https://todo-frontend-m4yu.onrender.com"
+            FRONTEND_URL = "https://funiture-frontend.onrender.com"
 
             confirm_url = f"{FRONTEND_URL}/auth/setpassword/{token['access']}"
             html_msg = f"""

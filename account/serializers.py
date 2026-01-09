@@ -58,7 +58,7 @@ class RegisterSerializer(serializers.ModelSerializer):
 
         # Generate a jwt token for confirm email
         token = token_generator(user)
-        FRONTEND_URL = "http://localhost:3000"
+        FRONTEND_URL = "https://funiture-frontend.onrender.com"
 
         confirm_url = f"{FRONTEND_URL}/confirmation/{token['access']}"
         html_msg = f"""
