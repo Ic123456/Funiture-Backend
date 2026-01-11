@@ -20,7 +20,7 @@ def create_product_image_on_create(sender, instance: Product, created: bool, **k
     # ensure DB transaction finished so storage/file is available
     def _create_gallery_image():
         # avoid duplicates if you run the signal twice for some reason
-        if not ProductImage.objects.filter(product=instance, image=instance.image.name).exists():
+        if not ProductImage.objects.filter(product=instance, image=instance.image).exists():
             ProductImage.objects.create(product=instance, image=instance.image)
 
     transaction.on_commit(_create_gallery_image)

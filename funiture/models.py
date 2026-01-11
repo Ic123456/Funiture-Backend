@@ -6,6 +6,7 @@ from django.conf import settings
 from django.core.validators import validate_email
 from django.core.exceptions import ValidationError
 
+from cloudinary.models import CloudinaryField
 # Create your models here.
 
 class InputEmail(models.Model):
@@ -37,7 +38,6 @@ class InputEmail(models.Model):
             self.email = self.email.strip().lower()
         super().save(*args, **kwargs)
 
-
 class Category(models.Model):
     name = models.CharField(max_length=100)
     slug = models.SlugField(unique=True, blank=True)
@@ -61,13 +61,12 @@ class Category(models.Model):
         super().save(force_insert=force_insert, force_update=force_update, using=using, update_fields=update_fields)
     
     
-
 class Product(models.Model):
     name = models.CharField(max_length=100)
     description = models.TextField()
     price = models.DecimalField(max_digits=10, decimal_places=2)
     slug = models.SlugField(unique=True, blank=True)
-    image = models.ImageField(upload_to='product_img', blank=True, null=True)
+    image = CloudinaryField('image')
     featured = models.BooleanField(default=False)
     categories = models.ManyToManyField(Category, related_name='products', blank=True)
     stock = models.PositiveIntegerField(default=0)
@@ -76,7 +75,6 @@ class Product(models.Model):
     dimension = models.CharField(max_length=100, blank=True, null=True)
     care = models.TextField(blank=True, null=True)
     created_at = models.DateTimeField(auto_now_add=True)
-    height = models.PositiveIntegerField(default=0)
 
     
     def __str__(self):
@@ -99,8 +97,8 @@ class Product(models.Model):
  
 class ProductImage(models.Model):
     product = models.ForeignKey(Product, on_delete=models.CASCADE, related_name="gallery")
-    image = models.ImageField(upload_to='product_img_detail', blank=True, null=True)
- 
+    image = image = CloudinaryField('image')
+    
 class Cart(models.Model):
     cart_code = models.CharField(max_length=11, unique=True)
     created_at = models.DateTimeField(auto_now_add=True)
