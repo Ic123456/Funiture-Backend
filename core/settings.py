@@ -94,7 +94,7 @@ WSGI_APPLICATION = 'core.wsgi.application'
 # https://docs.djangoproject.com/en/5.2/ref/settings/#databases
 
 
-if DEBUG:
+if not DEBUG:
     DATABASES = {
         "default": dj_database_url.parse(config("DATABASE_URL"))
     }
