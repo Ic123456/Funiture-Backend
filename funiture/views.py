@@ -211,7 +211,6 @@ class AddToCart(APIView):
             httponly=True,
             secure=False,
         )
-            
         return response
     
     

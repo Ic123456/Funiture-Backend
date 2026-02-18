@@ -5,6 +5,8 @@ from phonenumber_field.modelfields import PhoneNumberField
 from django.conf import settings  
 from django.core.validators import validate_email
 from django.core.exceptions import ValidationError
+import uuid
+
 
 from cloudinary.models import CloudinaryField
 # Create your models here.
@@ -100,7 +102,7 @@ class ProductImage(models.Model):
     image = image = CloudinaryField('image')
     
 class Cart(models.Model):
-    cart_code = models.CharField(max_length=11, unique=True)
+    cart_code = models.UUIDField(default=uuid.uuid4, editable=False, unique=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     
