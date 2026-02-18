@@ -502,7 +502,7 @@ class CreatePaystackCheckoutSession(APIView):
             "amount": amount_kobo,
             "currency": "NGN",
             "reference": reference,
-            "callback_url": "http://localhost:3000/cart",
+            "callback_url": "https://funiture-backend.onrender.com/cart",
             "metadata": {
                 "cart_code": str(cart.cart_code),
                 "items": items_meta,
