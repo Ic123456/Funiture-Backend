@@ -555,7 +555,8 @@ class PaystackWebhookView(APIView):
             session = webhook_post_data["data"]
             metadata = session.get("metadata", {})
             cart_code = metadata.get("cart_code")
-
+            
+            
             # Call your fulfillment logic
             fulfill_checkout(session, cart_code)
 
@@ -567,11 +568,16 @@ def fulfill_checkout(session, cart_code):
     if Order.objects.filter(paystack_checkout_id=session["id"]).exists():
         return  # already processed
 
-    order = Order.objects.create(paystack_checkout_id=session["id"],
-        amount=session["amount"],
+    amount = Decimal(session["amount"]) / Decimal("100")
+ 
+    order = Order.objects.create(
+        paystack_checkout_id=session["id"],
+        amount=amount,
         currency=session["currency"],
         customer_email=session['customer']['email'],
-        status="Paid")
+        status="Paid"
+    )
+
     
 
     cart = Cart.objects.get(cart_code=cart_code)
@@ -582,6 +588,7 @@ def fulfill_checkout(session, cart_code):
                                              quantity=item.quantity)
     
     cart.cartitems.all().delete()
+
 
 class OrderItemView(APIView):
     permission_classes = [permissions.IsAuthenticated]

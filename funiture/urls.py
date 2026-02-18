@@ -32,15 +32,4 @@ urlpatterns = [
     path('webhook/paystack/', views.PaystackWebhookView.as_view(), name="paystack_webhook"),
     path("orderitem", views.OrderItemView.as_view(), name="orderitem"),
     
-    # path("create_paystack_checkout_session", views.CreatePaystackCheckoutSession.as_view(), name="create_paystack_checkout_session"),
-    # path('webhook/paystack/', views.PaystackWebhookView.as_view(), name="paystack_webhook"),
-    
-    # path('logout', views.LogoutView.as_view(), name='auth_logout'),
-    # path('google_login', views.GoogleAuth.as_view(), name='google_login'),
-    
-    
-    # path("jwt/token/refresh", views.CookieTokenRefreshView.as_view(), name="token_refresh"),
-    # path("jwt/token/verify", TokenVerifyView.as_view(), name="token_verify"),
-    # path('jwt/token/blacklist', TokenBlacklistView.as_view(), name='token_blacklist'),
-    
 ]

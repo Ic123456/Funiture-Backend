@@ -34,7 +34,8 @@ APPEND_SLASH = False
 DEBUG = config('DEBUG', cast=bool)
 
 
-ALLOWED_HOSTS = config("ALLOWED_HOSTS").split(",")
+# ALLOWED_HOSTS = config("ALLOWED_HOSTS").split(",")
+ALLOWED_HOSTS = ["*"]
 CSRF_TRUSTED_ORIGINS =["https://6b5d4d384513.ngrok-free.app"]
 
 
