@@ -504,7 +504,7 @@ class CreatePaystackCheckoutSession(APIView):
             "reference": reference,
             "callback_url": "http://localhost:3000/cart",
             "metadata": {
-                "cart_code": cart.cart_code,
+                "cart_code": str(cart.cart_code),
                 "items": items_meta,
                 "cancel_action": "https://next-shop-self.vercel.app/failed",
             },
